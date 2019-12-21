@@ -1,19 +1,35 @@
-function maxSubarraySumNaive(arr, num) {
-	if (arr.length === 0) return null;
+//does a pair of numbers in the array equal the average provided?
 
-	let max = 0;
-	for (let i = 0; i < arr.length - num; i++) {
-		temp = 0;
-		for (let j = 0; j < num; j++) {
-			temp += arr[i + j];
-		}
-		if (temp > max) {
-			max = temp;
+function averagePair(arr, avg) {
+	let left = 0;
+	let right = arr.length - 1;
+	while (left < right) {
+		let movingAvg = (arr[left] + arr[right]) / 2;
+		if (movingAvg === avg) {
+			return true;
+		} else if (movingAvg < avg) {
+			left++;
+		} else {
+			right--;
 		}
 	}
-	return max;
+	return false;
 }
 
+//does string2 contain the letters of string1 in order?
+
+function isSubsequence(str1, str2) {
+	let i = 0;
+	let j = 0;
+	while (j < str2.length) {
+		if (str1[i] === str2[j]) i++;
+		if (i === str1.length) return true;
+		j++;
+	}
+	return false;
+}
+
+//What is the maximum sum of a group of numbers of num size
 function maxSubarraySum(arr, num) {
 	if (arr.length < num) return null;
 
